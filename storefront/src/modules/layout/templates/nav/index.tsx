@@ -25,11 +25,10 @@ export default async function Nav({
       {/* Shipping information bar - desktop only */}
       <ShippingBar region={currentRegion} />
       
-      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base"><nav className="content-container flex items-center justify-between w-full h-full px-4 small:px-8">
-          <div className="flex items-center gap-x-4 h-full">
+      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base"><nav className="content-container flex items-center justify-between w-full h-full px-4 small:px-8">          <div className="flex items-center gap-x-4 h-full">
             {/* Mobile menu button */}
             <div className="flex small:hidden items-center h-full">
-              <SideMenu regions={regions} />
+              <SideMenu regions={regions} store={store} />
             </div>
             
             {/* Store name/logo */}

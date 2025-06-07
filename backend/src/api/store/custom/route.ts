@@ -10,13 +10,11 @@ export async function GET(
   try {
     const stores = await storeModuleService.listStores();
     const store = stores[0]; // Get the first (default) store
-    
-    res.json({
+      res.json({
       store: {
         id: store.id,
         name: store.name,
         supported_currencies: store.supported_currencies,
-        default_currency_code: store.default_currency_code,
       }
     });
   } catch (error) {
