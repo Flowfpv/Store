@@ -1,62 +1,67 @@
 import { Suspense } from "react"
+import { ShoppingCart } from "lucide-react"
 
-import { listRegions } from "@lib/data/regions"
+import { listRegions, getRegion } from "@lib/data/regions"
 import { getStore } from "@lib/data/store"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import NavTabs from "@modules/layout/components/nav-tabs"
+import NavIcons from "@modules/layout/components/nav-icons"
+import ShippingBar from "@modules/layout/components/shipping-bar"
 
-export default async function Nav() {
+export default async function Nav({ 
+  params = {} 
+}: { 
+  params?: { countryCode?: string } 
+}) {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
+  const currentRegion = params.countryCode ? await getRegion(params.countryCode) : null
   const store = await getStore()
-
+  const showSearch = process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED === "true"
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
-      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex items-center justify-between w-full h-full text-small-regular">
-          <div className="flex-1 basis-0 h-full flex items-center">
-            <div className="h-full">
+      {/* Shipping information bar - desktop only */}
+      <ShippingBar region={currentRegion} />
+      
+      <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base"><nav className="content-container flex items-center justify-between w-full h-full px-4 small:px-8">
+          <div className="flex items-center gap-x-4 h-full">
+            {/* Mobile menu button */}
+            <div className="flex small:hidden items-center h-full">
               <SideMenu regions={regions} />
             </div>
-          </div>          <div className="flex items-center h-full">
-            <LocalizedClientLink
-              href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base"
-              data-testid="nav-store-link"
-            >
-              {store?.name || "Loading ..."}
-            </LocalizedClientLink>
-          </div>
-
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
-            <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.NEXT_PUBLIC_FEATURE_SEARCH_ENABLED && (
-                <LocalizedClientLink
-                  className="hover:text-ui-fg-base"
-                  href="/search"
-                  scroll={false}
-                  data-testid="nav-search-link"
-                >
-                  Search
-                </LocalizedClientLink>
-              )}
+            
+            {/* Store name/logo */}
+            <div className="flex items-center h-full">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
-                href="/account"
-                data-testid="nav-account-link"
+                href="/"
+                className="txt-compact-xlarge-plus hover:text-ui-fg-base font-semibold whitespace-nowrap"
+                data-testid="nav-store-link"
               >
-                Account
+                {store?.name || "Loading ..."}
               </LocalizedClientLink>
             </div>
+          </div>
+
+          {/* Desktop navigation tabs with proper spacing */}
+          <div className="flex-1 flex justify-center">
+            <NavTabs />
+          </div>          {/* Right side icons */}
+          <div className="flex items-center gap-x-2 h-full">
+            <NavIcons showSearch={showSearch} regions={regions} />
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-ui-fg-base flex gap-2"
+                  className="p-2 hover:text-ui-fg-base transition-colors relative hover:bg-ui-bg-subtle rounded-md"
                   href="/cart"
                   data-testid="nav-cart-link"
+                  title="Cart"
                 >
-                  Cart (0)
+                  <ShoppingCart size={20} />
+                  <span className="absolute -top-1 -right-1 bg-ui-fg-base text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    0
+                  </span>
                 </LocalizedClientLink>
               }
             >
