@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 
 import { listRegions } from "@lib/data/regions"
+import { getStore } from "@lib/data/store"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
@@ -8,6 +9,7 @@ import SideMenu from "@modules/layout/components/side-menu"
 
 export default async function Nav() {
   const regions = await listRegions().then((regions: StoreRegion[]) => regions)
+  const store = await getStore()
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -17,15 +19,13 @@ export default async function Nav() {
             <div className="h-full">
               <SideMenu regions={regions} />
             </div>
-          </div>
-
-          <div className="flex items-center h-full">
+          </div>          <div className="flex items-center h-full">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
+              className="txt-compact-xlarge-plus hover:text-ui-fg-base"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              {store?.name || "Loading ..."}
             </LocalizedClientLink>
           </div>
 

@@ -23,10 +23,9 @@ export default function CheckoutLayout({
             <span className="mt-px block small:hidden txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base">
               Back
             </span>
-          </LocalizedClientLink>
-          <LocalizedClientLink
+          </LocalizedClientLink>          <LocalizedClientLink
             href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base"
             data-testid="store-link"
           >
             Medusa Store
