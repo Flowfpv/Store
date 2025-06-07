@@ -26,7 +26,7 @@ export default function ShippingBar({ region }: ShippingBarProps) {
         <div className="flex-1 flex items-center justify-center gap-x-2">
           <Truck size={16} />
           <span className="font-medium">
-            Free shipping on orders over {freeShippingThreshold} • Fast delivery worldwide
+            Free shipping on orders over {freeShippingThreshold} • Fast delivery to select countries
           </span>
         </div>
         
