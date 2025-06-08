@@ -12,17 +12,17 @@ interface NavIconsProps {
 
 export default function NavIcons({ showSearch = false, regions }: NavIconsProps) {
   return (
-    <div className="flex items-center gap-x-2 h-full">
-      {showSearch && (
-        <LocalizedClientLink
-          className="p-2 hover:text-ui-fg-base transition-colors hover:bg-ui-bg-subtle rounded-md"
-          href="/search"
-          scroll={false}
-          data-testid="nav-search-link"
-          title="Search"
-        >
-          <Search size={20} />
-        </LocalizedClientLink>      )}
+    <div className="flex items-center gap-x-4 h-full">
+      {/* Search icon - always shown on desktop */}
+      <LocalizedClientLink
+        className="hidden small:flex p-2 hover:text-ui-fg-base transition-colors hover:bg-ui-bg-subtle rounded-md"
+        href="/search"
+        scroll={false}
+        data-testid="nav-search-link"
+        title="Search"
+      >
+        <Search size={20} />
+      </LocalizedClientLink>
       
       {/* Country flag selector - desktop only */}
       {regions && regions.length > 0 && (
