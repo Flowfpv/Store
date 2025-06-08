@@ -6,9 +6,9 @@ import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Flow FPV",
+  title: "Flow FPV - Custom FPV Drone Configurator & Store",
   description:
-    "A performant frontend ecommerce starter template with Next.js 14 and Medusa.",
+    "Build and customize your perfect FPV racing drone with our advanced configurator. Premium components, expert support, and cutting-edge technology for every pilot.",
 }
 
 export default async function Home({
@@ -22,10 +22,9 @@ export default async function Home({
   if (!collections || !region) {
     return null
   }
-
   return (
     <>
-      <Hero />
+      <Hero countryCode={countryCode} />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
