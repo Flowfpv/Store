@@ -1,5 +1,5 @@
 import { Button, Heading } from "@medusajs/ui"
-import { Play, Settings, Zap } from "lucide-react"
+import { Settings, Zap } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 import { getCollectionByHandle } from "@lib/data/collections"
@@ -84,7 +84,7 @@ const Hero = async ({ countryCode }: { countryCode: string }) => {
               <div className="space-y-4">
                 <div className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full border border-gray-200">
                   <Zap className="w-4 h-4 mr-2 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-700">Professional FPV Solutions</span>
+                  <span className="text-sm font-medium text-gray-700">New FPV configurator</span>
                 </div>
                   <Heading
                   level="h1"
@@ -97,9 +97,7 @@ const Hero = async ({ countryCode }: { countryCode: string }) => {
                 </Heading>
                 
                 <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-                  Experience precision engineering with our advanced FPV configurator. 
-                  Build custom racing drones, cinematic quads, and freestyle machines 
-                  with professional-grade components.
+                  Configure your own FPV Drone online and get it shipped to your door. Choose from a wide range of components, customize your setup, and take your FPV experience to the next level.
                 </p>
               </div>
 
@@ -115,30 +113,24 @@ const Hero = async ({ countryCode }: { countryCode: string }) => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gray-900 rounded-full" />
-                  <span className="text-gray-700 font-medium">Expert Support</span>
+                  <span className="text-gray-700 font-medium">Compatibility check</span>
                 </div>
-              </div>
-
-              {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <LocalizedClientLink href="/store">
+              </div>              {/* CTA buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 items-start">                <LocalizedClientLink href="/store">
                   <Button 
                     size="large" 
-                    className="bg-gray-900 hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                    className="bg-gray-900 hover:bg-gray-800 text-white border-0 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <Settings className="w-5 h-5 mr-2" />
                     Start Configuring
                   </Button>
                 </LocalizedClientLink>
                 
-                <Button 
-                  variant="secondary"
-                  size="large"
-                  className="bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 hover:border-gray-300 px-8 py-4 text-lg font-semibold transition-all duration-300"
-                >
-                  <Play className="w-5 h-5 mr-2" />
-                  Watch Demo
-                </Button>
+                <LocalizedClientLink href="/store" className="self-center sm:self-start mt-2 sm:mt-3">
+                  <span className="text-gray-700 hover:text-gray-900 font-medium underline decoration-2 underline-offset-4 transition-colors duration-300">
+                    Browse our shop
+                  </span>
+                </LocalizedClientLink>
               </div>
             </div>            {/* Right content - Featured drone showcase */}
             <div className="relative pl-14 lg:block hidden">
