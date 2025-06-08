@@ -12,7 +12,14 @@ interface NavIconsProps {
 
 export default function NavIcons({ showSearch = false, regions }: NavIconsProps) {
   return (
-    <div className="flex items-center gap-x-4 h-full">
+    <>
+      {/* Country flag selector - desktop only */}
+      {regions && regions.length > 0 && (
+        <div className="hidden small:block relative">
+          <CountryFlagSelect regions={regions} />
+        </div>
+      )}
+      
       {/* Search icon - always shown on desktop */}
       <LocalizedClientLink
         className="hidden small:flex p-2 hover:text-ui-fg-base transition-colors hover:bg-ui-bg-subtle rounded-md"
@@ -24,13 +31,6 @@ export default function NavIcons({ showSearch = false, regions }: NavIconsProps)
         <Search size={20} />
       </LocalizedClientLink>
       
-      {/* Country flag selector - desktop only */}
-      {regions && regions.length > 0 && (
-        <div className="hidden small:block relative">
-          <CountryFlagSelect regions={regions} />
-        </div>
-      )}
-      
       <LocalizedClientLink
         className="p-2 hover:text-ui-fg-base transition-colors hover:bg-ui-bg-subtle rounded-md"
         href="/account"
@@ -39,6 +39,6 @@ export default function NavIcons({ showSearch = false, regions }: NavIconsProps)
       >
         <User size={20} />
       </LocalizedClientLink>
-    </div>
+    </>
   )
 }
