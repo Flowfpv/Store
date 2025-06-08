@@ -5,6 +5,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 export default function NavTabs() {
   const pathname = usePathname()
+  
   const isActive = (path: string) => {
     // Remove country code from pathname for matching
     const cleanPathname = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/'
@@ -14,15 +15,14 @@ export default function NavTabs() {
     }
     return cleanPathname.startsWith(path)
   }
+  
   const navItems = [
     { href: "/", label: "Home", testId: "nav-home-link" },
     { href: "/store", label: "Store", testId: "nav-store-link" },
     { href: "/collections", label: "Collections", testId: "nav-collections-link" },
-    { href: "/categories", label: "Categories", testId: "nav-categories-link" },
   ]
-  
-  return (
-    <div className="hidden small:flex items-center gap-x-8 h-full">
+    return (
+    <div className="hidden small:flex items-center gap-x-10 h-full">
       {navItems.map((item) => (
         <LocalizedClientLink
           key={item.href}
