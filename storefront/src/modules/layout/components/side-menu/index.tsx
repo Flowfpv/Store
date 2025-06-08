@@ -116,7 +116,7 @@ const SideMenu = ({
                           />
                         </div>
                       )}                      <Text className="text-xs text-ui-fg-subtle text-left">
-                        © {new Date().getFullYear()} {store?.name || "Store"}. All rights reserved.
+                        © {new Date().getFullYear()} Flow FPV. All rights reserved.
                       </Text>
                     </div>
                   </div>
